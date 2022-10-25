@@ -13,9 +13,9 @@
 <div class="menuBar">
     <table class="menuBarTable">
         <tr>
-            <td class="menuBarItem"><a class="menuButton" href="pg_protocolos.php"><input class='menuButton' type="submit" value="Ver protocolos"/></a></td>
-            <td class="menuBarItem"><a class="menuButton" href="pg_cadastrarProtocolo.php"><input class='menuButton' type="submit" value="Abrir solicitação"/></a></td>
-            <td class="menuBarItem"><a class="menuButton" href="pg_login.php"><input class='menuButton' type="submit" value="Login (funcionário)"/></a></td>
+            <td class="menuBarItem"><a class="menuButton" href="protocolos.php"><input class='menuButton' type="submit" value="Ver protocolos"/></a></td>
+            <td class="menuBarItem"><a class="menuButton" href="cadastrarProtocolo.php"><input class='menuButton' type="submit" value="Abrir solicitação"/></a></td>
+            <td class="menuBarItem"><a class="menuButton" href="login.php"><input class='menuButton' type="submit" value="Login (funcionário)"/></a></td>
         </tr>
     </table>
 </div>
@@ -31,7 +31,7 @@
         <a class="helperButton" href="">Esqueci minha senha...</a>
         <br/>
         <br/>
-        <a class="helperButton" href="pg_registrarUsuario.php">Cadastrar usuário...</a>
+        <a class="helperButton" href="registrarUsuario.php">Cadastrar usuário...</a>
         <br/>
         <br/>
         <input class='button' type="submit"  value="Login"/>

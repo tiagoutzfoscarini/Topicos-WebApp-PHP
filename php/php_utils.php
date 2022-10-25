@@ -135,4 +135,3 @@ function sendEmail($to, $toName, $subj, $msg)
         return false;
     }
 }
-?>

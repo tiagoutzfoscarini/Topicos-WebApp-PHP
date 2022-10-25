@@ -27,7 +27,7 @@ function request(url, data, callback) {
 }
 
 
-// pg_index.php
+// index.php
 function logout() {
     request('php/logout.php', false, function(data) {
         if(data === '0') {
@@ -67,7 +67,7 @@ function deleteAccount() {
     });
 }
 
-// pg_login.php
+// login.php
 function login() {
     request('php/login.php', '#loginForm', function(data) {
         document.getElementById('errs').innerHTML = "";

@@ -13,9 +13,9 @@
 <div class="menuBar">
     <table class="menuBarTable">
         <tr>
-            <td class="menuBarItem"><a class="menuButton" href="pg_index.php"><input class='menuButton' type="submit" value="Início"/></a></td>
-            <td class="menuBarItem"><a class="menuButton" href="pg_cadastrarProtocolo.php"><input class='menuButton' type="submit" value="Abrir solicitação"/></a></td>
-            <td class="menuBarItem"><a class="menuButton" href="pg_login.php"><input class='menuButton' type="submit" value="Login (funcionário)"/></a></td>
+            <td class="menuBarItem"><a class="menuButton" href="index.php"><input class='menuButton' type="submit" value="Início"/></a></td>
+            <td class="menuBarItem"><a class="menuButton" href="cadastrarProtocolo.php"><input class='menuButton' type="submit" value="Abrir solicitação"/></a></td>
+            <td class="menuBarItem"><a class="menuButton" href="login.php"><input class='menuButton' type="submit" value="Login (funcionário)"/></a></td>
         </tr>
     </table>
 </div>
