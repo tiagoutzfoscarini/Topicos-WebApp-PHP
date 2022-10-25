@@ -1,0 +1,190 @@
+* {
+    background: #4d4c4c;
+    color: white;
+    margin: auto;
+    text-align: center;
+    font-family: pythagoras, subway, sans-serif;
+}
+
+.mainTitle {
+    margin-top: 10px;
+    padding: 20px;
+}
+
+.menuBar {
+    background: cornflowerblue;
+    padding: 5px;
+    margin-bottom: 10px;
+    width: 99%;
+}
+
+.menuBarTable, .menuBarTable td, .menuBarTable tr {
+    background: cornflowerblue;
+}
+
+.menuBarItem {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.menuButton {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.menuButton:hover {
+    color: black;
+    cursor: pointer;
+    font-weight: bold;
+    text-transform: uppercase;
+    /*text-shadow: 2px 2px black;*/
+}
+
+.button[type=submit] {
+    background: cornflowerblue;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 16px;
+    width: 200px;
+}
+
+.cityBar {
+    padding-bottom: 10px;
+    padding-top: 20px;
+}
+
+.cityButton, .button {
+    background: cornflowerblue;
+    text-decoration: none;
+    border-radius: 5px;
+    padding: 4px;
+}
+
+.cityButton:hover, .button:hover {
+    color: black;
+    background: lightblue;
+    cursor: pointer;
+    text-shadow: none;
+}
+
+.newProtocolBox {
+    width: 70%;
+    min-width: 500px;
+    max-width: 1200px;
+}
+
+.newProtocolForm {
+    background: #e8e8e8;
+    padding: 25px;
+    border: solid 1px black;
+    border-radius: 30px;
+    /*display: grid; !* to use css-grid *!*/
+    /*grid-template-columns: 1fr 1fr; !* creates 2 columns *!*/
+    /*gap: 20px; !* creates a gap between the columns and rows *!*/
+    /*display: flex;*/
+}
+
+.newProtocolForm label {
+    /*float: left;*/
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: black;
+    background: none;
+}
+
+.newProtocolForm input {
+    /*width: 100%;*/
+    /*float: right;*/
+    flex: 1;
+    margin-left: 10px;
+    background: white;
+    color: black;
+    border-radius: 8px;
+}
+
+.newProtocolForm select {
+    flex: 1;
+    margin-left: 10px;
+}
+
+.map {
+    height: 100px;
+}
+
+.tableProtocols {
+    border: solid 1px black;
+}
+
+.tableProtocols td {
+    width: 10%;
+    max-width: 130px;
+    min-width: 80px;
+}
+
+.menuTitle {
+    padding-top: 40px;
+    padding-bottom: 20px;
+    font-size: 18px;
+}
+
+.loginBox {
+    margin-bottom: 20px;
+    margin-top: 20px;
+    width: 50%;
+    min-width: 400px;
+    max-width: 900px;
+}
+
+.loginBox input {
+    margin-bottom: 10px;
+    margin-top: 10px;
+    margin-left: 10px;
+    flex: 1;
+    background: white;
+    color: black;
+    border-radius: 8px;
+}
+
+.loginBox label {
+    color: black;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.loginBox .helperButton {
+    background: none;
+    color: black;
+    font-style: italic;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.loginBox input, .loginBox label {
+    background: none;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.loginForm {
+    background: #e8e8e8;
+    padding: 50px;
+    border: solid 1px black;
+    border-radius: 30px;
+}
+
+.notes {
+    font-size: 14px;
+    color: black;
+    background: none;
+}
+
+footer {
+    margin-top: 50px;
+    font-family: monospace;
+    font-size: 12px;
+}
