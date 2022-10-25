@@ -43,7 +43,7 @@
     /*text-shadow: 2px 2px black;*/
 }
 
-.button[type=submit] {
+.button[class=button] {
     background: cornflowerblue;
     text-transform: uppercase;
     font-weight: bold;
