@@ -1,6 +1,6 @@
 <?php
 
-require_once 'sendValidationEmail.php';
+//require_once 'sendValidationEmail.php';
 $errors = [];
 
 // Validação de nome
