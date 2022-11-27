@@ -71,7 +71,7 @@
 }
 
 .newProtocolBox {
-    width: 70%;
+    width: 50%;
     min-width: 500px;
     max-width: 1200px;
 }
@@ -96,7 +96,7 @@
     background: none;
 }
 
-.newProtocolForm input {
+.newProtocolForm input, select {
     /*width: 100%;*/
     /*float: right;*/
     flex: 1;
@@ -107,8 +107,7 @@
 }
 
 .newProtocolForm select {
-    flex: 1;
-    margin-left: 10px;
+    font-weight: bold;
 }
 
 .map {
@@ -116,11 +115,28 @@
 }
 
 .tableProtocols {
-    border: solid 1px black;
+    border: solid 1px white;
+    width: 60%;
+}
+
+.tableProtocols .tableHeader{
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.tableProtocols tr>td {
+    padding-top: 10px;
 }
 
 .tableProtocols td {
     width: 10%;
+    max-width: 130px;
+    min-width: 80px;
+}
+
+
+.tableProtocols td:first-child, .tableProtocols td:last-child {
+    width: 4%;
     max-width: 130px;
     min-width: 80px;
 }
