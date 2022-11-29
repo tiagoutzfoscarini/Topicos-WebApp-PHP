@@ -6,7 +6,6 @@
     <title>Cadastrar Protocolo</title>
     <link href="css/style.css" rel="stylesheet" type="text/css">
     <link rel="icon" type="image/x-icon" href="images/favicon.ico">
-    <script src="main.js"></script>
 </head>
 
 <body class="body">
