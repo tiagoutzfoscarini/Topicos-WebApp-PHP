@@ -24,7 +24,7 @@
 
 <div class="protocolBox">
     <form id="newProtocolForm" class="protocolForm" action="cadastrarProtocolo.php" method="post" >
-        <label class="problemType">Tipo de problema*:<select id="problemType" name="problemType" <!--required-->>
+        <label class="problemType">Tipo de problema*:<select id="problemType" name="problemType" required >
             <?php
             $conn = sql_connect();
             $sql = "SELECT * FROM problemTypes ORDER BY problemTypeName ASC";
@@ -37,21 +37,17 @@
             ?>
             </select></label>
         <br/>
-        <!--        <label class="description">Descrição do problema*:<input id="description" name="description" type="text" required /></label>-->
-        <label class="description">Descrição do problema*:<input id="description" name="description" type="text" /></label>
+        <label class="description">Descrição do problema*:<input id="description" name="description" type="text" placeholder="Conte o que aconteceu..." required ></label>
         <br/>
-        <!--        <label class="name">Nome completo*:<input id="name" name="name" type="text" required /></label>-->
-        <label class="name">Nome completo*:<input id="name" name="name" type="text" /></label>
+        <label class="name">Nome completo*:<input id="name" name="name" type="text" pattern="[A-Za-zÀ-ÖØ-öø-ÿ ]+" placeholder="Informe seu nome completo..." required ></label>
         <br/>
-        <!--        <label class="cpf">CPF*:<input id="cpf" name="cpf" type="text" required /></label>-->
-        <label class="cpf">CPF*:<input id="cpf" name="cpf" type="text" /></label>
+        <label class="cpf">CPF*:<input id="cpf" name="cpf" type="text" placeholder="Informe seu CPF: 00000000000 (sem pontos, espaços ou traços)" required ></label>
         <br/>
-        <!--        <label class="phone">Telefone para contato*:<input id="tel" name="tel" type="tel" required /></label>-->
-        <label class="phone">Telefone para contato*:<input id="tel" name="tel" type="tel" /></label>
+        <label class="phone">Telefone para contato*:<input id="tel" name="tel" type="tel" size="11" pattern="[0-9]{2}[0-9]{9}" placeholder="Informe seu telefone no formato 519xxxxxxxx (sem pontos, espaços ou traços)" required ></label>
         <br/>
-        <label class="email">Email para contato:<input id="email" name="email" type="email" /></label>
+        <label class="email">Email para contato:<input id="email" name="email" type="email" placeholder="xxxxx@xxxxx.xxx" ></label>
         <br/>
-        <label class="images">Imagens:<input id="images" name="images" type="file" /></label>
+        <label class="images">Imagens:<input id="images" name="images" type="file" ></label>
         <br/>
         <label class="city">Cidade*:<select id="city" name="city" required>
                 <?php
@@ -66,8 +62,7 @@
                 ?>
             </select></label>
         <br/>
-<!--        <label class="address">Endereço*:<input id="address" type="text" name="address" required /></label>-->
-        <label class="address">Endereço*:<input id="address" type="text" name="address" /></label>
+        <label class="address">Endereço*:<input id="address" type="text" name="address" placeholder="Informe o endereço do ocorrido, rua e número aproximado" required ></label>
         <br/>
 <!--        <label class="map">Mapa: <input id="map" type="" disabled /></label>-->
 <!--        <br/>-->
