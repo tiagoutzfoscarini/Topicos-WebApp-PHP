@@ -1,12 +1,5 @@
 <?php
 require_once '.\config.php';
-//
-//use PHPMailer\PHPMailer\PHPMailer;
-//use PHPMailer\PHPMailer\Exception;
-//
-//require 'PHPMailer-master/src/Exception.php';
-//require 'PHPMailer-master/src/PHPMailer.php';
-//require 'PHPMailer-master/src/SMTP.php';
 
 function debug_to_console($data) {
     $output = $data;
@@ -16,20 +9,62 @@ function debug_to_console($data) {
     echo "<script>console.log('Debug Objects: " . $output . "' );</script>";
 }
 
-function function_alert($msg) {
-    echo "<script type='text/javascript'>alert('$msg');</script>";
-}
+function validate_CPF($cpf) {
+    // Extrai somente os números
+    $cpf = preg_replace( '/[^0-9]/is', '', $cpf );
 
-function validate_field_is_not_empty($field) {
-    debug_to_console("Validating field: " . $field);
-
-    if (empty($field)) {
-        function_alert("Campo obrigatório não preenchido");
-        return "";
-    } else {
-        return $field;
+    // Verifica se foi informado todos os digitos corretamente
+    if (strlen($cpf) != 11) {
+        return false;
     }
+
+    // Verifica se foi informada uma sequência de digitos repetidos. Ex: 111.111.111-11
+    if (preg_match('/(\d)\1{10}/', $cpf)) {
+        return false;
+    }
+
+    // Faz o calculo para validar o CPF
+    for ($t = 9; $t < 11; $t++) {
+        for ($d = 0, $c = 0; $c < $t; $c++) {
+            $d += $cpf[$c] * (($t + 1) - $c);
+        }
+        $d = ((10 * $d) % 11) % 10;
+        if ($cpf[$c] != $d) {
+            return false;
+        }
+    }
+    return true;
 }
+
+//function validate_phone($telefone){
+//    $telefone = trim(str_replace('/', '', str_replace(' ', '', str_replace('-', '', str_replace(')', '', str_replace('(', '', $telefone))))));
+//
+//    $regexTelefone = '[0-9]{11}';
+////    $regexCel = '/[0-9]{2}[6789][0-9]{3,4}[0-9]{4}/'; // Regex para validar somente celular
+//    if (preg_match($regexTelefone, $telefone)) {
+//        return true;
+//    } else {
+//        return false;
+//    }
+//}
+
+//function test_input($data) {
+//    $data = trim($data);
+////    $data = stripslashes($data);
+////    $data = htmlspecialchars($data);
+//    $data = filter_var($data, FILTER_SANITIZE_STRING);
+//    return $data;
+//}
+//
+//function validate_field_is_not_empty($errorArray, $field, $fieldDisplayName) {
+//    if (empty($_POST[$field])) {
+//        $errorMsg = "$fieldDisplayName não pode ser vazio";
+//        array_push($errorArray, $errorMsg);
+//        return false;
+//    } else {
+//        return true;
+//    }
+//}
 
 // Função para conectar ao banco de dados
 function sql_connect() {
@@ -65,9 +100,9 @@ function sql_connect() {
 
 // Função para query select no SQL Server, recebe conexão e query
 function sql_query_select($conn, $query) {
-    $stmt = sqlsrv_query( $conn, $query);
+    $stmt = sqlsrv_query($conn, $query);
 
-    if( $stmt === false ){
+    if ($stmt === false ) {
         debug_to_console("Error in executing SELECT query.</br>");
         die( print_r( sqlsrv_errors(), true));
     }
@@ -77,12 +112,12 @@ function sql_query_select($conn, $query) {
 
 
 // Função para query select no SQL Server, recebe conexão e query
-function sql_query_insert($conn, $query) {
-    $stmt = sqlsrv_query( $conn, $query);
+function sql_query_insert($conn, $query, $params) {
+    $stmt = sqlsrv_query($conn, $query, $params);
 
-    if( $stmt === false ){
+    if ($stmt === false ) {
         debug_to_console("Error in executing INSERT query.</br>");
-        die(print_r( sqlsrv_errors(), true));
+        die(print_r(sqlsrv_errors(), true));
     }
 
     return $stmt;

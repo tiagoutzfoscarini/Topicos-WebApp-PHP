@@ -31,7 +31,7 @@
             $stmt = sql_query_select($conn, $sql);
 
             while($row = sqlsrv_fetch_array($stmt)) {
-                echo "<td class='cityBarItem'><a class='cityButton' href='protocolos.php?id={$row['id']}'><input class='menuButton' type='submit' value='{$row['name']}'></a></td>";
+                echo "<td class='cityBarItem'><a class='cityButton' href='protocolos.php?id={$row['cityId']}'><input class='menuButton' type='submit' value='{$row['cityName']}'></a></td>";
             }
             sqlsrv_close($conn);
             ?>
@@ -63,49 +63,22 @@
         }
 
         $conn = sql_connect();
-        $sql = "SELECT * FROM protocols WHERE cityId = $id";
+//        $sql = "SELECT * FROM protocols WHERE cityId = $id";
+
+        $sql = "SELECT * FROM protocols INNER JOIN problemTypes ON (protocols.protocolId = problemTypes.problemTypeId) INNER JOIN statusList ON (protocols.protocolStatusId = statusList.statusId) WHERE protocolCityId = $id";
+
         $stmt = sql_query_select($conn, $sql);
 
         while($row = sqlsrv_fetch_array($stmt)) {
             echo "<tr>";
-            echo "<td>" . $row['id'] . "</td>";
-            echo "<td>" . $row['address'] . "</td>";
-
-            $sql2 = "SELECT * FROM problemTypes WHERE id = {$row['problemTypeId']}";
-            $stmt2 = sql_query_select($conn, $sql2);
-            $row2 = sqlsrv_fetch_array($stmt2);
-            echo "<td>" . $row2['name'] . "</td>";
-
-            $sql3 = "SELECT * FROM statusList WHERE id = {$row['statusId']}";
-            $stmt3 = sql_query_select($conn, $sql3);
-            $row3 = sqlsrv_fetch_array($stmt3);
-            echo "<td>" . $row3['name'] . "</td>";
-
-            echo "<td>" . "<a class='button' href='consultarProtocolo.php?id={$row['id']}'>Consultar</a>" . "</td>";
+            echo "<td>" . $row['protocolId'] . "</td>";
+            echo "<td>" . $row['protocolAddress'] . "</td>";
+            echo "<td>" . $row['problemTypeName'] . "</td>";
+            echo "<td>" . $row['statusName'] . "</td>";
+            echo "<td>" . "<a class='button' href='consultarProtocolo.php?id={$row['protocolId']}'>Consultar</a>" . "</td>";
             echo "</tr>";
         }
         ?>
-        <tr>
-            <td class="tableItem1"></td>
-            <td class="tableItem2"></td>
-            <td class="tableItem3"></td>
-            <td class="tableItem4"></td>
-            <td class="tableItem5"></td>
-        </tr>
-        <tr>
-            <td class="tableItem1"></td>
-            <td class="tableItem2"></td>
-            <td class="tableItem3"></td>
-            <td class="tableItem4"></td>
-            <td class="tableItem5"></td>
-        </tr>
-        <tr>
-            <td class="tableItem1"></td>
-            <td class="tableItem2"></td>
-            <td class="tableItem3"></td>
-            <td class="tableItem4"></td>
-            <td class="tableItem5"></td>
-        </tr>
     </table>
 </div>
 

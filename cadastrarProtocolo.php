@@ -6,6 +6,7 @@
     <title>Cadastrar Protocolo</title>
     <link href="css/style.css" rel="stylesheet" type="text/css">
     <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <script src="main.js"></script>
 </head>
 
 <body class="body">
@@ -21,114 +22,110 @@
     </table>
 </div>
 
-<div class="newProtocolBox">
-    <form id="newProtocolForm" class="newProtocolForm" onsubmit="getFormData(event)">
-<!--    <form id="newProtocolForm" class="newProtocolForm">-->
-        <label class="problemType">Tipo de problema*:<select id="problemType">
+<div class="protocolBox">
+    <form id="newProtocolForm" class="protocolForm" action="cadastrarProtocolo.php" method="post" >
+        <label class="problemType">Tipo de problema*:<select id="problemType" name="problemType" <!--required-->>
             <?php
             $conn = sql_connect();
-            $sql = "SELECT * FROM problemTypes";
+            $sql = "SELECT * FROM problemTypes ORDER BY problemTypeName ASC";
             $stmt = sql_query_select($conn, $sql);
 
             while($row = sqlsrv_fetch_array($stmt)) {
-                echo "<option value='{$row['id']}'>{$row['name']}</option>";
+                echo "<option value='{$row['problemTypeId']}'>{$row['problemTypeName']}</option>";
             }
             sqlsrv_close($conn);
             ?>
-        </select></label>
+            </select></label>
         <br/>
-        <label class="description">Descrição do problema*:<input id="description" type="text" required /></label>
+        <!--        <label class="description">Descrição do problema*:<input id="description" name="description" type="text" required /></label>-->
+        <label class="description">Descrição do problema*:<input id="description" name="description" type="text" /></label>
         <br/>
-        <label class="name">Nome completo*:<input id="name" type="text" required /></label>
+        <!--        <label class="name">Nome completo*:<input id="name" name="name" type="text" required /></label>-->
+        <label class="name">Nome completo*:<input id="name" name="name" type="text" /></label>
         <br/>
-        <label class="cpf">CPF*:<input id="cpf" type="text" required /></label>
+        <!--        <label class="cpf">CPF*:<input id="cpf" name="cpf" type="text" required /></label>-->
+        <label class="cpf">CPF*:<input id="cpf" name="cpf" type="text" /></label>
         <br/>
-        <label class="phone">Telefone para contato*:<input id="tel" type="tel" required /></label>
+        <!--        <label class="phone">Telefone para contato*:<input id="tel" name="tel" type="tel" required /></label>-->
+        <label class="phone">Telefone para contato*:<input id="tel" name="tel" type="tel" /></label>
         <br/>
-        <label class="email">Email para contato:<input id="email" type="email" /></label>
+        <label class="email">Email para contato:<input id="email" name="email" type="email" /></label>
         <br/>
-        <label class="images">Imagens:<input id="images" type="file" /></label>
+        <label class="images">Imagens:<input id="images" name="images" type="file" /></label>
         <br/>
-        <label class="city">Cidade*:<select id="city">
+        <label class="city">Cidade*:<select id="city" name="city" required>
                 <?php
                 $conn = sql_connect();
-                $sql = "SELECT * FROM cities";
+                $sql = "SELECT * FROM cities ORDER BY cityName ASC";
                 $stmt = sql_query_select($conn, $sql);
 
                 while($row = sqlsrv_fetch_array($stmt)) {
-                    echo "<option value='{$row['id']}'>{$row['name']}</option>";
+                    echo "<option value='{$row['cityId']}'>{$row['cityName']}</option>";
                 }
                 sqlsrv_close($conn);
                 ?>
             </select></label>
         <br/>
-        <label class="address">Endereço*:<input id="address" type="text" required /></label>
+<!--        <label class="address">Endereço*:<input id="address" type="text" name="address" required /></label>-->
+        <label class="address">Endereço*:<input id="address" type="text" name="address" /></label>
         <br/>
-        <label class="map">Mapa: <input id="map" type="" disabled /></label>
-        <br/>
+<!--        <label class="map">Mapa: <input id="map" type="" disabled /></label>-->
+<!--        <br/>-->
         <p class="notes">* campos obrigatórios</p>
-        <input class='button' type="submit" value="Enviar solicitação"/>
+        <input class='button' type="submit" name="submit" value="Enviar solicitação"/>
     </form>
 </div>
-
-<!--Debugging only-->
-<script>
-    function getFormData(event) {
-        event.preventDefault();
-        var problemType = document.getElementById("problemType").value;
-        var description = document.getElementById("description").value;
-        var name = document.getElementById("name").value;
-        var cpf = document.getElementById("cpf").value;
-        var tel = document.getElementById("tel").value;
-        var email = document.getElementById("email").value;
-        var images = document.getElementById("images").value;
-        var city = document.getElementById("city").value;
-        var address = document.getElementById("address").value;
-
-        console.log("problemType: " + problemType);
-        console.log("description: " + description);
-        console.log("name: " + name);
-        console.log("cpf: " + cpf);
-        console.log("tel: " + tel);
-        console.log("email: " + email);
-        console.log("images: " + images);
-        console.log("city: " + city);
-        console.log("address: " + address);
-    }
-</script>
-
 <?php
 // Submit do formulário
-if($_SERVER["REQUEST_METHOD"] == "POST") {
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $errors = [];
+
+    $form_problemType = $_POST['problemType'];
+    $form_description = $_POST['description'];
+    $form_name = $_POST['name'];
+    $form_cpf = $_POST['cpf'];
+    $form_tel = $_POST['tel'];
+    $form_email = $_POST['email'];
+    $form_city = $_POST['city'];
+    $form_address = $_POST['address'];
+
+//    $form_problemType = isset($_POST['problemType']) ? $_POST['problemType'] : false;
+//    $form_description = isset($_POST['description']) ? $_POST['description'] : false;
+//    $form_name = isset($_POST['name']) ? $_POST['name'] : false;
+//    $form_cpf = isset($_POST['cpf']) ? $_POST['cpf'] : false;
+//    $form_tel = isset($_POST['tel']) ? $_POST['tel'] : false;
+//    $form_city = isset($_POST['city']) ? $_POST['city'] : false;
+//    $form_address = isset($_POST['address']) ? $_POST['address'] : false;
+
+    $form_email = isset($_POST['email']) ? $_POST['email'] : false;
+    $form_images = isset($_POST['images']) ? $_POST['images'] : false;
+
+    $form_cpf = validate_CPF(str_replace(" ", "", $form_cpf));
+//    $form_tel = validate_phone(str_replace(" ", "", $form_tel));
+
     $conn = sql_connect();
 
-    $problemType = validate_field_is_not_empty($_POST['problemType']);
-    $description = validate_field_is_not_empty($_POST['description']);
-    $name = validate_field_is_not_empty($_POST['name']);
-    $cpf = validate_field_is_not_empty($_POST['cpf']);
-    $tel = validate_field_is_not_empty($_POST['tel']);
-    $email = validate_field_is_not_empty($_POST['email']);
-    $images = validate_field_is_not_empty($_POST['images']);
-    $city = validate_field_is_not_empty($_POST['city']);
-    $address = validate_field_is_not_empty($_POST['address']);
+    if ($form_problemType && $form_description && $form_name && $form_cpf && $form_tel && $form_city && $form_address) {
+        $sql = "INSERT INTO protocols (protocolProblemTypeId, protocolDescription, protocolRequesterName, protocolRequesterCpf, protocolRequesterPhone, protocolRequesterEmail, protocolCityId, protocolAddress, protocolStatusId) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-    if ($problemType <> "" && $description <> "" && $name <> "" && $cpf <> "" && $tel <> "" && $city <> "" && $address <> "") {
-        $sql = "INSERT INTO protocols (description, problemTypeId, cityId, address, statusId, requesterCpf, requesterName, requesterPhone)
-                VALUES ($description, $problemType, $city, $address, 1, $cpf, $name, $tel)";
+//        $sql = "INSERT INTO protocols ('description', 'problemTypeId', 'cityId', 'address', 'statusId', 'requesterCpf', 'requesterName', 'requesterPhone') VALUES ('$form_description', '$form_description', '$form_city', '$form_address', 1, '$form_cpf', '$form_name', '$form_tel')";
 
-        $stmt = sql_query_insert($conn, $sql);
+        $params = array($form_problemType, $form_description, $form_name, $form_cpf, $form_tel, $form_email, $form_city, $form_address, 1);
+
+        $stmt = sql_query_insert($conn, $sql, $params);
 
         if ($stmt) {
             echo "<script>alert('Protocolo cadastrado com sucesso!');</script>";
         } else {
-            echo "<script>alert('Erro ao cadastrar protocolo!');</script>";
+//            echo "<script type='text/javascript'> alert('".json_encode($errors)."') </script>";
+            echo "<script>alert('Erro ao cadastrar protocolo! Falha ao inserir no banco!');</script>";
         }
     } else {
-        echo "<script>alert('Erro ao cadastrar protocolo!');</script>";
+//        echo "<script type='text/javascript'> alert('".json_encode($errors)."') </script>";
+        echo "<script>alert('Erro ao cadastrar protocolo! Valores faltando!');</script>";
     }
 
-    // Inserção do novo cadastro no banco
-
+    sqlsrv_close($conn);
 }
 ?>
 </body>

@@ -21,6 +21,38 @@
     </table>
 </div>
 
+<div class="protocolInformationBox">
+    <form class="protocolInformationForm">
+        <?php
+        if (isset($_GET['id'])) {
+            $id = (int)($_GET['id']);
+
+            // Validação que o ID é um número, se não for, apresenta um aviso
+            if (!is_integer($id) or $id <= 0) {
+                echo "<script>alert('INVALID ID');</script>";
+                $id = 1;
+            }
+        } else {
+            $id = 1;
+        }
+
+        $conn = sql_connect();
+        $sql = "SELECT * FROM protocols INNER JOIN problemTypes ON (protocols.protocolId = problemTypes.problemTypeId) INNER JOIN statusList ON (protocols.protocolStatusId = statusList.statusId) WHERE protocolId = $id";
+        $stmt = sql_query_select($conn, $sql);
+
+
+        while($row = sqlsrv_fetch_array($stmt)) {
+            echo "<label class='labelProtocol'>Nº protocolo: <p class='labelProtocolValue'>{$row['protocolId']}</p></label><br/>";
+            echo "<label class='labelProtocol'>Endereço: <p class='labelProtocolValue'>{$row['protocolAddress']}</p></label><br/>";
+            echo "<label class='labelProtocol'>Tipo de problema: <p class='labelProtocolValue'>{$row['problemTypeName']}</p></label><br/>";
+            echo "<label class='labelProtocol'>Descrição: <p class='labelProtocolValue'>{$row['protocolDescription']}</p></label><br/>";
+            echo "<label class='labelProtocol'>Aberto por: <p class='labelProtocolValue'>{$row['protocolRequesterName']}</p></label><br/>";
+            echo "<label class='labelProtocol'>Status: <p class='labelProtocolValue'>{$row['statusName']}</p></label><br/>";
+        }
+        ?>
+    </form>
+</div>
+
 </body>
 <footer>
     <p>&copy; Faccat - Tópicos Especiais 2022/02</p>
