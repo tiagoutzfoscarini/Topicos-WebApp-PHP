@@ -65,7 +65,7 @@
         $conn = sql_connect();
 //        $sql = "SELECT * FROM protocols WHERE cityId = $id";
 
-        $sql = "SELECT * FROM protocols INNER JOIN problemTypes ON (protocols.protocolId = problemTypes.problemTypeId) INNER JOIN statusList ON (protocols.protocolStatusId = statusList.statusId) WHERE protocolCityId = $id";
+        $sql = "SELECT * FROM protocols INNER JOIN problemTypes ON (protocols.protocolProblemTypeId = problemTypes.problemTypeId) INNER JOIN statusList ON (protocols.protocolStatusId = statusList.statusId) WHERE protocolCityId = $id";
 
         $stmt = sql_query_select($conn, $sql);
 
