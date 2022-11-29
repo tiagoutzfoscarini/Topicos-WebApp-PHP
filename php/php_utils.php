@@ -122,3 +122,43 @@ function sql_query_insert($conn, $query, $params) {
 
     return $stmt;
 }
+
+function sql_get_max_status_id($conn) {
+    $query = "SELECT MAX(statusId) AS max_id FROM statusList";
+    $stmt = sql_query_select($conn, $query);
+    $row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC);
+    return $row['max_id'];
+}
+
+function sql_get_current_protocol_status($conn, $protocolId) {
+    $query = "SELECT * FROM protocols WHERE protocolId = $protocolId";
+    $stmt = sql_query_select($conn, $query);
+
+    $row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC);
+
+    return $row['protocolStatusId'];
+}
+
+// Função para query update protocol no SQL Server, recebe query e novo status
+function sql_update_protocol_Status($conn, $protocolId) {
+    $currentStatus = sql_get_current_protocol_status($conn, $protocolId);
+    $maxStatus = sql_get_max_status_id($conn);
+
+    if ($currentStatus < $maxStatus) {
+        $newStatus = $currentStatus + 1;
+    } else {
+        $newStatus = 1;
+    }
+
+    $query = "UPDATE protocols SET protocolStatusId = ? WHERE protocolId = ?";
+    $params = array($newStatus, $protocolId);
+
+    $stmt = sqlsrv_query($conn, $query, $params);
+
+    if ($stmt === false ) {
+        debug_to_console("Error in executing UPDATE query.</br>");
+        die(print_r(sqlsrv_errors(), true));
+    }
+
+    return $stmt;
+}

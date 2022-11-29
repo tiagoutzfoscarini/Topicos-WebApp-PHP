@@ -149,6 +149,8 @@
 
 .tableProtocols {
     border: solid 1px white;
+    border-radius: 30px;
+    border-spacing: 10px;
     width: 60%;
 }
 

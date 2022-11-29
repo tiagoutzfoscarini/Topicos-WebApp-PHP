@@ -47,7 +47,10 @@
             echo "<label class='labelProtocol'>Tipo de problema: <p class='labelProtocolValue'>{$row['problemTypeName']}</p></label><br/>";
             echo "<label class='labelProtocol'>Descrição: <p class='labelProtocolValue'>{$row['protocolDescription']}</p></label><br/>";
             echo "<label class='labelProtocol'>Aberto por: <p class='labelProtocolValue'>{$row['protocolRequesterName']}</p></label><br/>";
-            echo "<label class='labelProtocol'>Status: <p class='labelProtocolValue'>{$row['statusName']}</p></label><br/>";
+            echo "<label class='labelProtocol'>Status: <p class='labelProtocolValue'>{$row['statusName']}</p></label>";
+            echo "<td class='cityBarItem'><button id='buttonChangeStatus' class='button' onclick=";
+            echo sql_update_protocol_Status($conn, $row['protocolId']);
+            echo " >Alterar status</button></td>";
         }
         ?>
     </form>

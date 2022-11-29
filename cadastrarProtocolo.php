@@ -6,7 +6,6 @@
     <title>Cadastrar Protocolo</title>
     <link href="css/style.css" rel="stylesheet" type="text/css">
     <link rel="icon" type="image/x-icon" href="images/favicon.ico">
-    <script src="main.js"></script>
 </head>
 
 <body class="body">
@@ -47,7 +46,7 @@
         <br/>
         <label class="email">Email para contato:<input id="email" name="email" type="email" placeholder="xxxxx@xxxxx.xxx" ></label>
         <br/>
-        <label class="images">Imagens:<input id="images" name="images" type="file" ></label>
+        <label class="images">Imagens:<input id="images" name="images" type="file" accept="image/png, image/jpeg" multiple="multiple" ></label>
         <br/>
         <label class="city">Cidade*:<select id="city" name="city" required>
                 <?php
