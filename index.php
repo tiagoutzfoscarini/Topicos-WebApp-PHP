@@ -1,3 +1,4 @@
+<?php require_once 'php/php_utils.php'; ?>
 <!DOCTYPE html>
 <html lang="br">
 <head>
@@ -14,7 +15,7 @@
 <div class="menuBar">
     <table class="menuBarTable">
         <tr>
-            <td class="menuBarItem"><a class="menuButton" href="protocolos.php"><input class='menuButton' type="submit" value="Ver protocolos"/></a></td>
+            <td class="menuBarItem"><a class="menuButton" href="protocolos.php?id=1"><input class='menuButton' type="submit" value="Ver protocolos"/></a></td>
             <td class="menuBarItem"><a class="menuButton" href="cadastrarProtocolo.php"><input class='menuButton' type="submit" value="Abrir solicitação"/></a></td>
             <td class="menuBarItem"><a class="menuButton" href="login.php"><input class='menuButton' type="submit" value="Login (funcionário)"/></a></td>
         </tr>
@@ -27,3 +28,4 @@
     <p>&copy; Faccat - Tópicos Especiais 2022/02</p>
 </footer>
 </html>
+
