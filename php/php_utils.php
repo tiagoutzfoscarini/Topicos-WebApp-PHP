@@ -1,5 +1,5 @@
 <?php
-$config = include '.\config.php';
+$config = include('config.php');
 
 function debug_to_console($data) {
     $output = $data;
