@@ -43,7 +43,6 @@ $config = include('php/config.php');
         $sql = "SELECT * FROM protocols INNER JOIN problemTypes ON (protocols.protocolProblemTypeId = problemTypes.problemTypeId) INNER JOIN statusList ON (protocols.protocolStatusId = statusList.statusId) WHERE protocolId = $id";
         $stmt = sql_query_select($conn, $sql);
 
-
         while($row = sqlsrv_fetch_array($stmt)) {
             echo "<label class='labelProtocol'>Nº protocolo: <p class='labelProtocolValue'>{$row['protocolId']}</p></label>";
             echo "<label class='labelProtocol'>Endereço: <p class='labelProtocolValue'>{$row['protocolAddress']}</p></label>";
@@ -53,7 +52,7 @@ $config = include('php/config.php');
             echo "<label class='labelProtocol'>Telefone: <p class='labelProtocolValue'>{$row['protocolRequesterPhone']}</p></label>";
             echo "<label class='labelProtocol'>Email: <p class='labelProtocolValue'>{$row['protocolRequesterEmail']}</p></label>";
             echo "<label class='labelProtocol'>Status: <p class='labelProtocolValue'>{$row['statusName']}</p></label>";
-            echo "<td class='cityBarItem'><button id='buttonChangeStatus' class='button' ><a href='consultarProtocolo.php?id={$id}&changeStatus=true&protocolId={$row['protocolId']}'>Alterar status</a></button></td>";
+            echo "<td class='cityBarItem'><button id='buttonChangeStatus' class='button' ><a href='consultarProtocolo.php?id={$row['protocolId']}&changeStatus=true'>Alterar status</a></button></td>";
 //            echo "<td class='cityBarItem'><button id='buttonChangeStatus' class='button' onclick=";
 //            echo sql_update_protocol_Status($conn, $row['protocolId']);
 //            echo " >Alterar status</button></td>";
@@ -69,18 +68,18 @@ $config = include('php/config.php');
 </html>
 
 <?php
-if (isset($_GET['changeStatus']) and isset($_GET['protocolId'])) {
-    $protocolId = (int)($_GET['protocolId']);
+if (isset($_GET['changeStatus']) and isset($_GET['id'])) {
+    $id = (int)($_GET['id']);
     $changeStatus = (bool)($_GET['changeStatus']);
 
     // Validação que o ID é um número, se não for, apresenta um aviso
-    if (!is_integer($protocolId) or $protocolId <= 0) {
+    if (!is_integer($id) or $id <= 0) {
         echo "<script>alert('INVALID ID');</script>";
     }
 
-    if ($changeStatus and $protocolId > 0) {
+    if ($changeStatus and $id > 0) {
         $conn = sql_connect();
-        sql_update_protocol_Status($conn, $protocolId);
+        sql_update_protocol_Status($conn, $id);
     }
 }
 ?>
