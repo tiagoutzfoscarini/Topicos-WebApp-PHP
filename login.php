@@ -32,7 +32,7 @@
         <a class="helperButton" href="">Esqueci minha senha...</a>
         <br/>
         <br/>
-        <a class="helperButton" href="registrarUsuario.php">Cadastrar usuário...</a>
+        <a class="helperButton" href="login.php">Cadastrar usuário...</a>
         <br/>
         <br/>
         <input class='button' type="submit"  value="Login"/>
