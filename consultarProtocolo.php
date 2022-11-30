@@ -45,11 +45,12 @@ $config = include('php/config.php');
 
 
         while($row = sqlsrv_fetch_array($stmt)) {
-            echo "<label class='labelProtocol'>Nº protocolo: <p class='labelProtocolValue'>{$row['protocolId']}</p></label><br/>";
-            echo "<label class='labelProtocol'>Endereço: <p class='labelProtocolValue'>{$row['protocolAddress']}</p></label><br/>";
-            echo "<label class='labelProtocol'>Tipo de problema: <p class='labelProtocolValue'>{$row['problemTypeName']}</p></label><br/>";
-            echo "<label class='labelProtocol'>Descrição: <p class='labelProtocolValue'>{$row['protocolDescription']}</p></label><br/>";
-            echo "<label class='labelProtocol'>Aberto por: <p class='labelProtocolValue'>{$row['protocolRequesterName']}</p></label><br/>";
+            echo "<label class='labelProtocol'>Nº protocolo: <p class='labelProtocolValue'>{$row['protocolId']}</p></label>";
+            echo "<label class='labelProtocol'>Endereço: <p class='labelProtocolValue'>{$row['protocolAddress']}</p></label>";
+            echo "<label class='labelProtocol'>Tipo de problema: <p class='labelProtocolValue'>{$row['problemTypeName']}</p></label>";
+            echo "<label class='labelProtocol'>Descrição: <p class='labelProtocolValue'>{$row['protocolDescription']}</p></label>";
+            echo "<label class='labelProtocol'>Aberto por: <p class='labelProtocolValue'>{$row['protocolRequesterName']}</p></label>";
+            echo "<label class='labelProtocol'>Telefone: <p class='labelProtocolValue'>{$row['protocolRequesterPhone']}</p></label>";
             echo "<label class='labelProtocol'>Status: <p class='labelProtocolValue'>{$row['statusName']}</p></label>";
             echo "<td class='cityBarItem'><button id='buttonChangeStatus' class='button' ><a href='consultarProtocolo.php?id={$id}&changeStatus=true&protocolId={$row['protocolId']}'>Alterar status</a></button></td>";
 //            echo "<td class='cityBarItem'><button id='buttonChangeStatus' class='button' onclick=";
