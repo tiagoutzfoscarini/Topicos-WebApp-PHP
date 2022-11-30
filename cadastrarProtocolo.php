@@ -1,4 +1,4 @@
-<?php require_once 'php/php_utils.php'; ?>
+<?php include_once 'php/php_utils.php'; ?>
 <!DOCTYPE html>
 <html lang="br">
 <head>
