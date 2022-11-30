@@ -51,6 +51,7 @@ $config = include('php/config.php');
             echo "<label class='labelProtocol'>Descrição: <p class='labelProtocolValue'>{$row['protocolDescription']}</p></label>";
             echo "<label class='labelProtocol'>Aberto por: <p class='labelProtocolValue'>{$row['protocolRequesterName']}</p></label>";
             echo "<label class='labelProtocol'>Telefone: <p class='labelProtocolValue'>{$row['protocolRequesterPhone']}</p></label>";
+            echo "<label class='labelProtocol'>Email: <p class='labelProtocolValue'>{$row['protocolRequesterEmail']}</p></label>";
             echo "<label class='labelProtocol'>Status: <p class='labelProtocolValue'>{$row['statusName']}</p></label>";
             echo "<td class='cityBarItem'><button id='buttonChangeStatus' class='button' ><a href='consultarProtocolo.php?id={$id}&changeStatus=true&protocolId={$row['protocolId']}'>Alterar status</a></button></td>";
 //            echo "<td class='cityBarItem'><button id='buttonChangeStatus' class='button' onclick=";
