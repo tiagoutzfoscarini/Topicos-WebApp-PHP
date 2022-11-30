@@ -1,6 +1,6 @@
 <?php
 $utils = include ('php/php_utils.php');
-$config = include('config.php');
+$config = include('php/config.php');
 ?>
 <!DOCTYPE html>
 <html lang="br">
@@ -51,9 +51,10 @@ $config = include('config.php');
             echo "<label class='labelProtocol'>Descrição: <p class='labelProtocolValue'>{$row['protocolDescription']}</p></label><br/>";
             echo "<label class='labelProtocol'>Aberto por: <p class='labelProtocolValue'>{$row['protocolRequesterName']}</p></label><br/>";
             echo "<label class='labelProtocol'>Status: <p class='labelProtocolValue'>{$row['statusName']}</p></label>";
-            echo "<td class='cityBarItem'><button id='buttonChangeStatus' class='button' onclick=";
-            echo sql_update_protocol_Status($conn, $row['protocolId']);
-            echo " >Alterar status</button></td>";
+            echo "<td class='cityBarItem'><button id='buttonChangeStatus' class='button' ><a href='consultarProtocolo.php?changeStatus=true&protocolId={$row['protocolId']}'>Alterar status</a></button></td>";
+//            echo "<td class='cityBarItem'><button id='buttonChangeStatus' class='button' onclick=";
+//            echo sql_update_protocol_Status($conn, $row['protocolId']);
+//            echo " >Alterar status</button></td>";
         }
         ?>
     </form>
@@ -64,3 +65,20 @@ $config = include('config.php');
     <p>&copy; Faccat - Tópicos Especiais 2022/02</p>
 </footer>
 </html>
+
+<?php
+if (isset($_GET['changeStatus']) and isset($_GET['protocolId'])) {
+    $protocolId = (int)($_GET['protocolId']);
+    $changeStatus = (bool)($_GET['changeStatus']);
+
+    // Validação que o ID é um número, se não for, apresenta um aviso
+    if (!is_integer($protocolId) or $protocolId <= 0) {
+        echo "<script>alert('INVALID ID');</script>";
+    }
+
+    if ($changeStatus and $protocolId > 0) {
+        $conn = sql_connect();
+        sql_update_protocol_Status($conn, $protocolId);
+    }
+}
+?>

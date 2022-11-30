@@ -1,6 +1,6 @@
 <?php
 $utils = include ('php/php_utils.php');
-$config = include('config.php');
+$config = include('php/config.php');
 ?>
 <!DOCTYPE html>
 <html lang="br">
