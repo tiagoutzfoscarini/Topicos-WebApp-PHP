@@ -51,6 +51,12 @@
     width: 200px;
 }
 
+.button[class=button] a {
+    background: none;
+    text-transform: none;
+    text-decoration: none;
+}
+
 .cityBar {
     padding-bottom: 10px;
     padding-top: 20px;
