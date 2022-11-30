@@ -1,4 +1,3 @@
-<?php require_once 'php/php_utils.php'; ?>
 <!DOCTYPE html>
 <html lang="br">
 <head>
@@ -7,9 +6,8 @@
     <link href="css/style.css" rel="stylesheet" type="text/css">
     <link rel="icon" type="image/x-icon" href="images/favicon.ico">
 </head>
-
 <body class="body">
-'<h1 class="mainTitle">Setor de protocolo online</h1>
+<h1 class="mainTitle">Setor de protocolo online</h1>
 
 <p class="menuTitle">Selecione abaixo o que deseja fazer</p>
 <div class="menuBar">
